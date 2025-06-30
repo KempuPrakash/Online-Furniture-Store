@@ -29,11 +29,11 @@
     </nav>
   </header>
 
-  <main class="p-6 max-w-xl mx-auto bg-white rounded shadow">
-    <img src="https://via.placeholder.com/400" alt="Product Image" class="w-full h-60 object-cover mb-4">
-    <h2 class="text-2xl font-bold mb-2">Modern Sofa</h2>
-    <p class="mb-2">This modern sofa is perfect for any living room. Stylish, durable, and comfortable.</p>
-    <p class="text-indigo-600 font-semibold mb-4">₹12,999</p>
+  <main class="p-6 max-w-xl mx-auto bg-white rounded shadow" id="product-detail">
+    <img id="product-image" src="" alt="Product Image" class="w-full h-60 object-cover mb-4 rounded">
+    <h2 id="product-title" class="text-2xl font-bold mb-2"></h2>
+    <p id="product-description" class="mb-2"></p>
+    <p id="product-price" class="text-indigo-600 font-semibold mb-4"></p>
     <a href="checkout.html">
       <button class="bg-indigo-600 text-white px-4 py-2 rounded">Buy Now</button>
     </a>
@@ -42,5 +42,33 @@
   <footer class="bg-white text-center text-sm p-4 border-t mt-6">
     &copy; 2025 Furniture Hub. All rights reserved.
   </footer>
+
+  <script>
+    const products = {
+      1: { title: "Classic Wooden Chair", price: "₹2,499", image: "sofa 1.webp", description: "Classic wooden chair with premium finish and strong build." },
+      2: { title: "Modern Grey Sofa", price: "₹12,999", image: "sofa 2.jpg", description: "Stylish and comfortable modern grey sofa, ideal for living rooms." },
+      3: { title: "Rustic Dining Table", price: "₹5,499", image: "table 1.avif", description: "Rustic wooden dining table, perfect for family meals." },
+      4: { title: "5-Shelf Bookcase", price: "₹3,999", image: "sofa 4.webp", description: "Compact and modern bookcase for your home library." },
+      5: { title: "Ergonomic Office Chair", price: "₹4,299", image: "chair 3.jpg", description: "Comfortable and adjustable office chair for all-day use." },
+      6: { title: "Wall Mounted TV Unit", price: "₹6,750", image: "sofa 3.webp", description: "Modern wall-mounted TV unit with sleek storage." },
+      7: { title: "Round Coffee Table", price: "₹2,299", image: "Chair 1.jpg", description: "Minimalist round coffee table, ideal for any room." },
+      8: { title: "Queen Size Bed", price: "₹15,499", image: "chair 2.jpg", description: "Spacious and sturdy queen size bed for maximum comfort." },
+      9: { title: "Sliding Door Wardrobe", price: "₹13,299", image: "sofa 1.webp", description: "Stylish sliding door wardrobe with ample storage." }
+    };
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('product');
+    const product = products[productId];
+
+    if (product) {
+      document.getElementById("product-title").textContent = product.title;
+      document.getElementById("product-price").textContent = product.price;
+      document.getElementById("product-description").textContent = product.description;
+      document.getElementById("product-image").src = product.image;
+      document.getElementById("product-image").alt = product.title;
+    } else {
+      document.getElementById("product-detail").innerHTML = '<p class="text-red-500">Product not found.</p>';
+    }
+  </script>
 </body>
 </html>
